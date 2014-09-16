@@ -5,4 +5,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Atom feed</name>
   <description>Enterprise integration patterns with atom</description>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>atom-feed-consumer</module>
+  	<module>atom-feed-producer</module>
+  </modules>
 </project>
