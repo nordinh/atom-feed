@@ -1,4 +1,6 @@
-package com.cegeka.atomfeed.producer.activiteit;
+package com.cegeka.atomfeed.activiteit;
+
+import static com.google.common.base.MoreObjects.toStringHelper;
 
 import java.util.Date;
 
@@ -10,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ActiviteitNotificatie {
-	
+
 	@XmlElement
 	private String activiteitCode;
 	@XmlElement
@@ -19,9 +21,9 @@ public class ActiviteitNotificatie {
 	private String oudeActiviteitCode;
 	private Date updated;
 
-	@SuppressWarnings("unused")
-	private ActiviteitNotificatie(){}
-	
+	public ActiviteitNotificatie() {
+	}
+
 	public ActiviteitNotificatie(
 			String activiteitCode,
 			String activiteitBeschrijving,
@@ -44,13 +46,22 @@ public class ActiviteitNotificatie {
 	public String getOudeActiviteitCode() {
 		return oudeActiviteitCode;
 	}
-	
-	void setUpdated(Date updated) {
+
+	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
-	
+
 	public Date getUpdated() {
 		return updated;
+	}
+
+	@Override
+	public String toString() {
+		return toStringHelper(this)
+				.add("code", activiteitCode)
+				.add("beschrijving", activiteitBeschrijving)
+				.add("oude code", oudeActiviteitCode)
+				.toString();
 	}
 
 }
