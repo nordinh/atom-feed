@@ -12,9 +12,10 @@
 		<module>atom-feed-producer</module>
 		<module>atom-feed-common</module>
 	</modules>
-	
+
 	<properties>
 		<resteasy.version>3.0.8.Final</resteasy.version>
+		<metrics.version>3.1.0</metrics.version>
 	</properties>
 
 	<dependencyManagement>
@@ -64,6 +65,26 @@
 				<groupId>com.cegeka</groupId>
 				<artifactId>atom-feed-producer</artifactId>
 				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.dropwizard.metrics</groupId>
+				<artifactId>metrics-core</artifactId>
+				<version>${metrics.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.dropwizard.metrics</groupId>
+				<artifactId>metrics-servlets</artifactId>
+				<version>${metrics.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.dropwizard.metrics</groupId>
+				<artifactId>metrics-servlet</artifactId>
+				<version>${metrics.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.xavierbourguignon.metrics</groupId>
+				<artifactId>metrics-resteasy</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

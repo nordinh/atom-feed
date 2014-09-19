@@ -22,6 +22,7 @@ import org.jboss.resteasy.plugins.providers.atom.Person;
 
 import com.cegeka.atomfeed.activiteit.ActiviteitNotificatie;
 import com.cegeka.atomfeed.activiteit.ActiviteitenFeed;
+import com.codahale.metrics.annotation.Timed;
 import com.google.common.collect.Lists;
 
 @Path("/")
@@ -40,11 +41,13 @@ public class ActiviteitenFeedProducer implements ActiviteitenFeed {
 			new ActiviteitNotificatie("08", "Activeit08", null, new Date()));
 
 	@Override
+	@Timed
 	public Feed getFeed() {
 		return getFeed(lastPage());
 	}
 
 	@Override
+	@Timed
 	public Feed getFeed(Integer page) {
 		try {
 			Feed feed = new Feed();
