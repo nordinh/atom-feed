@@ -87,7 +87,7 @@ public class ActiviteitenFeedProducer implements ActiviteitenFeed {
 		return notificaties
 				.subList(page * PAGE_SIZE, noOfEntriesFor(page))
 				.stream()
-				.map((notificatie) -> wrapInEntry(notificatie))
+				.map(notificatie -> wrapInEntry(notificatie))
 				.collect(collectingAndThen(toList(), Lists::reverse));
 	}
 
