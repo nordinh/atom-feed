@@ -37,8 +37,7 @@ public class ActiviteitenFeedProducer implements ActiviteitenFeed {
 			new ActiviteitNotificatie("04", "Activeit04", null, new Date()),
 			new ActiviteitNotificatie("05", "Activeit05", null, new Date()),
 			new ActiviteitNotificatie("06", "Activeit06", null, new Date()),
-			new ActiviteitNotificatie("07", "Activeit07", null, new Date()),
-			new ActiviteitNotificatie("08", "Activeit08", null, new Date()));
+			new ActiviteitNotificatie("07", "Activeit07", null, new Date()));
 
 	@Override
 	@Timed
