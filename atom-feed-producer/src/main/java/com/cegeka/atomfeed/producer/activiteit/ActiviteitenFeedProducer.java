@@ -52,10 +52,10 @@ public class ActiviteitenFeedProducer implements ActiviteitenFeed {
 			Feed feed = new Feed();
 			feed.setId(new URI("tag:cegeka.com,2014:activiteiten:notificaties"));
 			feed.setTitle("Notificaties voor veranderingen in activiteiten");
-			feed.setUpdated(notificaties.get(0).getUpdated());
 			feed.getLinks().addAll(generateLinks(page));
 			feed.getAuthors().add(new Person("Nordin Haouari"));
 			feed.getEntries().addAll(generateEntries(page));
+			feed.setUpdated(feed.getEntries().isEmpty() ? new Date() : feed.getEntries().get(0).getUpdated());
 			return feed;
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
@@ -79,7 +79,8 @@ public class ActiviteitenFeedProducer implements ActiviteitenFeed {
 	}
 
 	private int lastPage() {
-		return notificaties.size() / PAGE_SIZE;
+		int result = notificaties.size() / PAGE_SIZE;
+		return notificaties.size() % PAGE_SIZE == 0 ? result - 1 : result;
 	}
 
 	private List<Entry> generateEntries(Integer page) {
