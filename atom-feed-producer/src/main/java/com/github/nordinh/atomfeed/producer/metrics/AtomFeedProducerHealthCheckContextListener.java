@@ -1,4 +1,4 @@
-package com.cegeka.atomfeed.producer.metrics;
+package com.github.nordinh.atomfeed.producer.metrics;
 
 import com.codahale.metrics.health.HealthCheckRegistry;
 import com.codahale.metrics.servlets.HealthCheckServlet;

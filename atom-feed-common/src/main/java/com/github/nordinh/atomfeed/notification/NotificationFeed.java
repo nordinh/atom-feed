@@ -1,4 +1,4 @@
-package com.cegeka.atomfeed.activiteit;
+package com.github.nordinh.atomfeed.notification;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -9,20 +9,20 @@ import javax.ws.rs.Produces;
 import org.jboss.resteasy.plugins.providers.atom.Entry;
 import org.jboss.resteasy.plugins.providers.atom.Feed;
 
-public interface ActiviteitenFeed {
+public interface NotificationFeed {
 
 	@GET
-	@Path("/activiteiten/notificaties")
+	@Path("/notifications")
 	@Produces("application/atom+xml")
 	public Feed getFeed();
 
 	@GET
-	@Path("/activiteiten/notificaties/{page}")
+	@Path("/notifications/{page}")
 	@Produces("application/atom+xml")
 	public Feed getFeed(@PathParam("page") Integer page);
 
 	@POST
-	@Path("/activiteiten/notificaties")
+	@Path("/notifications")
 	@Produces("application/atom+xml")
 	public void add(Entry entry);
 

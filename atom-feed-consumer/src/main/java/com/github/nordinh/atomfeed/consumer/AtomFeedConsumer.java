@@ -1,4 +1,4 @@
-package com.cegeka.atomfeed.consumer;
+package com.github.nordinh.atomfeed.consumer;
 
 import static com.google.common.collect.Lists.reverse;
 

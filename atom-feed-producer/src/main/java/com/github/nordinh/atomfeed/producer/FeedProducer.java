@@ -1,4 +1,4 @@
-package com.cegeka.atomfeed.producer;
+package com.github.nordinh.atomfeed.producer;
 
 import static com.google.common.collect.Sets.newHashSet;
 
@@ -7,16 +7,16 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import com.cegeka.atomfeed.producer.activiteit.ActiviteitenFeedProducer;
-import com.cegeka.atomfeed.producer.metrics.AtomFeedProducerMetricsProperties;
+import com.github.nordinh.atomfeed.producer.metrics.AtomFeedProducerMetricsProperties;
+import com.github.nordinh.atomfeed.producer.notification.NotificationFeedProducer;
 import com.github.xavierbourguignon.metrics.resteasy.MetricsFeature;
 
 @ApplicationPath("/")
-public class Competenties extends Application {
+public class FeedProducer extends Application {
 
 	@Override
 	public Set<Class<?>> getClasses() {
-		return newHashSet(ActiviteitenFeedProducer.class);
+		return newHashSet(NotificationFeedProducer.class);
 	}
 
 	@Override

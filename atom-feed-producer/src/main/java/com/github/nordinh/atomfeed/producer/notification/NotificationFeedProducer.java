@@ -1,4 +1,4 @@
-package com.cegeka.atomfeed.producer.activiteit;
+package com.github.nordinh.atomfeed.producer.notification;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static java.lang.Math.min;
@@ -20,24 +20,24 @@ import org.jboss.resteasy.plugins.providers.atom.Feed;
 import org.jboss.resteasy.plugins.providers.atom.Link;
 import org.jboss.resteasy.plugins.providers.atom.Person;
 
-import com.cegeka.atomfeed.activiteit.ActiviteitNotificatie;
-import com.cegeka.atomfeed.activiteit.ActiviteitenFeed;
 import com.codahale.metrics.annotation.Timed;
+import com.github.nordinh.atomfeed.notification.Notification;
+import com.github.nordinh.atomfeed.notification.NotificationFeed;
 import com.google.common.collect.Lists;
 
 @Path("/")
-public class ActiviteitenFeedProducer implements ActiviteitenFeed {
+public class NotificationFeedProducer implements NotificationFeed {
 
 	private static final int PAGE_SIZE = 5;
 
-	private static final List<ActiviteitNotificatie> notificaties = newArrayList(
-			new ActiviteitNotificatie("01", "Activeit01", null, new Date()),
-			new ActiviteitNotificatie("02", "Activeit02", null, new Date()),
-			new ActiviteitNotificatie("03", "Activeit03", null, new Date()),
-			new ActiviteitNotificatie("04", "Activeit04", null, new Date()),
-			new ActiviteitNotificatie("05", "Activeit05", null, new Date()),
-			new ActiviteitNotificatie("06", "Activeit06", null, new Date()),
-			new ActiviteitNotificatie("07", "Activeit07", null, new Date()));
+	private static final List<Notification> notificaties = newArrayList(
+			new Notification("01", "Activity01", new Date()),
+			new Notification("02", "Activity02", new Date()),
+			new Notification("03", "Activity03", new Date()),
+			new Notification("04", "Activity04", new Date()),
+			new Notification("05", "Activity05", new Date()),
+			new Notification("06", "Activity06", new Date()),
+			new Notification("07", "Activity07", new Date()));
 
 	@Override
 	@Timed
@@ -50,8 +50,8 @@ public class ActiviteitenFeedProducer implements ActiviteitenFeed {
 	public Feed getFeed(Integer page) {
 		try {
 			Feed feed = new Feed();
-			feed.setId(new URI("tag:cegeka.com,2014:activiteiten:notificaties"));
-			feed.setTitle("Notificaties voor veranderingen in activiteiten");
+			feed.setId(new URI("tag:nordinh.github.com,2014:notifications"));
+			feed.setTitle("Some example of notifications");
 			feed.getLinks().addAll(generateLinks(page));
 			feed.getAuthors().add(new Person("Nordin Haouari"));
 			feed.getEntries().addAll(generateEntries(page));
@@ -75,7 +75,7 @@ public class ActiviteitenFeedProducer implements ActiviteitenFeed {
 	}
 
 	private String baseURL() {
-		return "http://localhost:8082/activiteiten/notificaties/";
+		return "http://localhost:8082/notifications/";
 	}
 
 	private int lastPage() {
@@ -95,11 +95,11 @@ public class ActiviteitenFeedProducer implements ActiviteitenFeed {
 		return min((page + 1) * PAGE_SIZE, notificaties.size());
 	}
 
-	private Entry wrapInEntry(ActiviteitNotificatie notificatie) {
+	private Entry wrapInEntry(Notification notificatie) {
 		try {
 			Entry entry = new Entry();
 			entry.setTitle("Notificatie " + notificatie.getActiviteitCode());
-			entry.setId(new URI("tag:cegeka.com,2014:activiteiten:notificatie:" + notificatie.getActiviteitCode()));
+			entry.setId(new URI("tag:nordinh.github.com,2014:notification:" + notificatie.getActiviteitCode()));
 			entry.setUpdated(notificatie.getUpdated());
 			Content content = new Content();
 			content.setJAXBObject(notificatie);
@@ -114,8 +114,8 @@ public class ActiviteitenFeedProducer implements ActiviteitenFeed {
 	public void add(Entry entry) {
 		try {
 			Content content = entry.getContent();
-			ActiviteitNotificatie notificatie;
-			notificatie = content.getJAXBObject(ActiviteitNotificatie.class);
+			Notification notificatie;
+			notificatie = content.getJAXBObject(Notification.class);
 			notificatie.setUpdated(new Date());
 			notificaties.add(notificatie);
 		} catch (JAXBException e) {

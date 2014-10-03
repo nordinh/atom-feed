@@ -1,4 +1,4 @@
-package com.cegeka.atomfeed.consumer;
+package com.github.nordinh.atomfeed.consumer;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ public class ConsumerServletContainerInitializer implements ServletContainerInit
 
 	@Override
 	public void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException {
-		ActiviteitenFeedConsumer.initialize();
+		NotificationsFeedConsumer.initialize();
 	}
 
 }

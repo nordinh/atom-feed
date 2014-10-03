@@ -1,4 +1,4 @@
-package com.cegeka.atomfeed.activiteit;
+package com.github.nordinh.atomfeed.notification;
 
 import static com.google.common.base.MoreObjects.toStringHelper;
 
@@ -11,40 +11,33 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ActiviteitNotificatie {
+public class Notification {
 
 	@XmlElement
-	private String activiteitCode;
+	private String code;
 	@XmlElement
-	private String activiteitBeschrijving;
+	private String description;
 	@XmlElement
-	private String oudeActiviteitCode;
 	private Date updated;
 
-	public ActiviteitNotificatie() {
+	public Notification() {
 	}
 
-	public ActiviteitNotificatie(
+	public Notification(
 			String activiteitCode,
 			String activiteitBeschrijving,
-			String oudeActiviteitCode,
 			Date updated) {
-		this.activiteitCode = activiteitCode;
-		this.activiteitBeschrijving = activiteitBeschrijving;
-		this.oudeActiviteitCode = oudeActiviteitCode;
+		this.code = activiteitCode;
+		this.description = activiteitBeschrijving;
 		this.updated = updated;
 	}
 
 	public String getActiviteitCode() {
-		return activiteitCode;
+		return code;
 	}
 
 	public String getActiviteitBeschrijving() {
-		return activiteitBeschrijving;
-	}
-
-	public String getOudeActiviteitCode() {
-		return oudeActiviteitCode;
+		return description;
 	}
 
 	public void setUpdated(Date updated) {
@@ -58,9 +51,8 @@ public class ActiviteitNotificatie {
 	@Override
 	public String toString() {
 		return toStringHelper(this)
-				.add("code", activiteitCode)
-				.add("beschrijving", activiteitBeschrijving)
-				.add("oude code", oudeActiviteitCode)
+				.add("code", code)
+				.add("description", description)
 				.toString();
 	}
 

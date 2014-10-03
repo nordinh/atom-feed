@@ -1,12 +1,12 @@
-package com.cegeka.atomfeed.consumer;
+package com.github.nordinh.atomfeed.consumer;
 
 import javax.xml.bind.JAXBException;
 
 import org.jboss.resteasy.plugins.providers.atom.Entry;
 
-import com.cegeka.atomfeed.activiteit.ActiviteitNotificatie;
+import com.github.nordinh.atomfeed.notification.Notification;
 
-public class ActiviteitenFeedConsumer {
+public class NotificationsFeedConsumer {
 
 	public static void initialize() {
 		System.out.println("Initializing ActiviteitenFeed consumer");
@@ -15,7 +15,7 @@ public class ActiviteitenFeedConsumer {
 
 			@Override
 			public String getURL() {
-				return "http://localhost:8082/activiteiten/notificaties/";
+				return "http://localhost:8082/notifications/";
 			}
 
 			@Override
@@ -30,9 +30,9 @@ public class ActiviteitenFeedConsumer {
 		}.start();
 	}
 
-	private static ActiviteitNotificatie mapToActiviteitNotificatie(Entry entry) {
+	private static Notification mapToActiviteitNotificatie(Entry entry) {
 		try {
-			return entry.getContent().getJAXBObject(ActiviteitNotificatie.class);
+			return entry.getContent().getJAXBObject(Notification.class);
 		} catch (JAXBException e) {
 			throw new RuntimeException(e);
 		}

@@ -3,13 +3,13 @@
 	version="3.0">
 
 	<listener>
-		<listener-class>com.cegeka.atomfeed.producer.metrics.AtomFeedProducerServletMetricsContextListener</listener-class>
+		<listener-class>com.github.nordinh.atomfeed.producer.metrics.AtomFeedProducerServletMetricsContextListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>com.cegeka.atomfeed.producer.metrics.AtomFeedProducerHealthCheckContextListener</listener-class>
+		<listener-class>com.github.nordinh.atomfeed.producer.metrics.AtomFeedProducerHealthCheckContextListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>com.cegeka.atomfeed.producer.metrics.AtomFeedProducerInstrumentedMetricsContextListener</listener-class>
+		<listener-class>com.github.nordinh.atomfeed.producer.metrics.AtomFeedProducerInstrumentedMetricsContextListener</listener-class>
 	</listener>
 
 	<filter>
