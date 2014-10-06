@@ -24,7 +24,7 @@ public class NotificationsFeedConsumer {
 			}
 
 			@Override
-			public int getThreads() {
+			public int getNoOfConcurrentConsumers() {
 				return 5;
 			};
 		}.start();

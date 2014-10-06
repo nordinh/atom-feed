@@ -23,16 +23,8 @@
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.dropwizard.metrics</groupId>
-			<artifactId>metrics-servlets</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.dropwizard.metrics</groupId>
-			<artifactId>metrics-servlet</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.github.xavierbourguignon.metrics</groupId>
-			<artifactId>metrics-resteasy</artifactId>
+			<groupId>com.github.nordinh</groupId>
+			<artifactId>atom-feed-metrics</artifactId>
 		</dependency>
 	</dependencies>
 

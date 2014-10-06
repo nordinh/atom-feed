@@ -1,9 +1,6 @@
 package com.github.nordinh.atomfeed.producer.notification;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static java.lang.Math.min;
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -16,19 +13,13 @@ import javax.xml.bind.JAXBException;
 
 import org.jboss.resteasy.plugins.providers.atom.Content;
 import org.jboss.resteasy.plugins.providers.atom.Entry;
-import org.jboss.resteasy.plugins.providers.atom.Feed;
-import org.jboss.resteasy.plugins.providers.atom.Link;
 import org.jboss.resteasy.plugins.providers.atom.Person;
 
-import com.codahale.metrics.annotation.Timed;
 import com.github.nordinh.atomfeed.notification.Notification;
 import com.github.nordinh.atomfeed.notification.NotificationFeed;
-import com.google.common.collect.Lists;
 
 @Path("/")
-public class NotificationFeedProducer implements NotificationFeed {
-
-	private static final int PAGE_SIZE = 5;
+public class NotificationFeedProducer extends AtomFeedProducer<Notification> implements NotificationFeed {
 
 	private static final List<Notification> notificaties = newArrayList(
 			new Notification("01", "Activity01", new Date()),
@@ -40,74 +31,53 @@ public class NotificationFeedProducer implements NotificationFeed {
 			new Notification("07", "Activity07", new Date()));
 
 	@Override
-	@Timed
-	public Feed getFeed() {
-		return getFeed(lastPage());
+	protected ArrayList<Person> getAuthors() {
+		return newArrayList(new Person("Nordin Haouari"));
 	}
 
 	@Override
-	@Timed
-	public Feed getFeed(Integer page) {
-		try {
-			Feed feed = new Feed();
-			feed.setId(new URI("tag:nordinh.github.com,2014:notifications"));
-			feed.setTitle("Some example of notifications");
-			feed.getLinks().addAll(generateLinks(page));
-			feed.getAuthors().add(new Person("Nordin Haouari"));
-			feed.getEntries().addAll(generateEntries(page));
-			feed.setUpdated(feed.getEntries().isEmpty() ? new Date() : feed.getEntries().get(0).getUpdated());
-			return feed;
-		} catch (URISyntaxException e) {
-			throw new RuntimeException(e);
-		}
+	protected String getFeedTitle() {
+		return "Some example of notifications";
 	}
 
-	private List<Link> generateLinks(Integer page) {
-		ArrayList<Link> links = newArrayList();
-		links.add(new Link("self", baseURL() + page));
-		links.add(new Link("first", baseURL() + "0"));
-		links.add(new Link("last", baseURL() + lastPage()));
-		if (page < lastPage())
-			links.add(new Link("next", baseURL() + (page + 1)));
-		if (page > 0)
-			links.add(new Link("previous", baseURL() + (page - 1)));
-		return links;
+	@Override
+	protected URI getFeedId() throws URISyntaxException {
+		return new URI("tag:nordinh.github.com,2014:notifications");
 	}
 
-	private String baseURL() {
+	@Override
+	protected String baseURL() {
 		return "http://localhost:8082/notifications/";
 	}
 
-	private int lastPage() {
-		int result = notificaties.size() / PAGE_SIZE;
-		return notificaties.size() % PAGE_SIZE == 0 ? result - 1 : result;
+	@Override
+	protected int getPageSize() {
+		return 5;
 	}
 
-	private List<Entry> generateEntries(Integer page) {
-		return notificaties
-				.subList(page * PAGE_SIZE, noOfEntriesFor(page))
-				.stream()
-				.map(notificatie -> wrapInEntry(notificatie))
-				.collect(collectingAndThen(toList(), Lists::reverse));
+	@Override
+	protected int getCollectionSize() {
+		return notificaties.size();
 	}
 
-	private int noOfEntriesFor(Integer page) {
-		return min((page + 1) * PAGE_SIZE, notificaties.size());
+	@Override
+	protected List<Notification> getCollection(int from, int noOfElements) {
+		return notificaties.subList(from, noOfElements);
 	}
 
-	private Entry wrapInEntry(Notification notificatie) {
-		try {
-			Entry entry = new Entry();
-			entry.setTitle("Notificatie " + notificatie.getActiviteitCode());
-			entry.setId(new URI("tag:nordinh.github.com,2014:notification:" + notificatie.getActiviteitCode()));
-			entry.setUpdated(notificatie.getUpdated());
-			Content content = new Content();
-			content.setJAXBObject(notificatie);
-			entry.setContent(content);
-			return entry;
-		} catch (URISyntaxException e) {
-			throw new RuntimeException(e);
-		}
+	@Override
+	protected Date getEntryUpdated(Notification notificatie) {
+		return notificatie.getUpdated();
+	}
+
+	@Override
+	protected URI getEntryId(Notification notificatie) throws URISyntaxException {
+		return new URI("tag:nordinh.github.com,2014:notification:" + notificatie.getActiviteitCode());
+	}
+
+	@Override
+	protected String getEntryTitle(Notification notificatie) {
+		return "Notificatie " + notificatie.getActiviteitCode();
 	}
 
 	@Override

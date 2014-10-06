@@ -27,7 +27,7 @@ public abstract class AtomFeedConsumer {
 	private Client client;
 
 	public AtomFeedConsumer() {
-		entryConsumptionService = newFixedThreadPool(getThreads(), getQueueSize());
+		entryConsumptionService = newFixedThreadPool(getNoOfConcurrentConsumers(), getBufferSize());
 		client = ClientBuilder.newClient();
 		timer = new Timer(true);
 	}
@@ -36,27 +36,27 @@ public abstract class AtomFeedConsumer {
 
 	public abstract void consumeEntry(Entry entry);
 
-	public int getThreads() {
+	public int getNoOfConcurrentConsumers() {
 		return 1;
 	}
 
-	public int getQueueSize() {
+	public int getBufferSize() {
 		return 100;
 	}
 
-	public long getDelay() {
+	public long getDelayBeforeConsuming() {
 		return Duration.ofSeconds(0).toMillis();
 	}
 
-	public long getFrequency() {
+	public long getConsumptionFrequency() {
 		return Duration.ofSeconds(15).toMillis();
 	}
 
 	public void start() {
 		timer.schedule(
 				pollFeed(),
-				getDelay(),
-				getFrequency());
+				getDelayBeforeConsuming(),
+				getConsumptionFrequency());
 	}
 
 	public void stop() {

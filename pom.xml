@@ -11,6 +11,7 @@
 		<module>atom-feed-consumer</module>
 		<module>atom-feed-producer</module>
 		<module>atom-feed-common</module>
+		<module>atom-feed-metrics</module>
 	</modules>
 
 	<properties>
@@ -64,6 +65,11 @@
 			<dependency>
 				<groupId>com.github.nordinh</groupId>
 				<artifactId>atom-feed-producer</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.nordinh</groupId>
+				<artifactId>atom-feed-metrics</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
