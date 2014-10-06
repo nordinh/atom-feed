@@ -8,10 +8,9 @@
 	<description>Enterprise integration patterns with atom</description>
 	<packaging>pom</packaging>
 	<modules>
-		<module>atom-feed-consumer</module>
-		<module>atom-feed-producer</module>
-		<module>atom-feed-common</module>
+		<module>atom-feed-core</module>
 		<module>atom-feed-metrics</module>
+		<module>atom-feed-example</module>
 	</modules>
 
 	<properties>
@@ -70,6 +69,11 @@
 			<dependency>
 				<groupId>com.github.nordinh</groupId>
 				<artifactId>atom-feed-metrics</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.nordinh</groupId>
+				<artifactId>atom-feed-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
