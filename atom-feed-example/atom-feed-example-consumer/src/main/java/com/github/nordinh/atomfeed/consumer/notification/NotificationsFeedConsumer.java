@@ -5,6 +5,7 @@ import javax.xml.bind.JAXBException;
 import org.jboss.resteasy.plugins.providers.atom.Entry;
 
 import com.github.nordinh.atomfeed.core.AtomFeedConsumer;
+import com.github.nordinh.atomfeed.core.ConcurrentInMemoryAtomFeedBookmark;
 import com.github.nordinh.atomfeed.notification.Notification;
 
 public class NotificationsFeedConsumer {
@@ -12,7 +13,7 @@ public class NotificationsFeedConsumer {
 	public static void initialize() {
 		System.out.println("Initializing ActiviteitenFeed consumer");
 
-		new AtomFeedConsumer() {
+		new AtomFeedConsumer(new ConcurrentInMemoryAtomFeedBookmark()) {
 
 			@Override
 			public String getURL() {

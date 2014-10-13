@@ -20,13 +20,14 @@ import org.jboss.resteasy.plugins.providers.atom.Feed;
 
 public abstract class AtomFeedConsumer {
 
-	private final AtomFeedBookmark atomFeedBookmark = new AtomFeedBookmark();
+	private final AtomFeedBookmark atomFeedBookmark;
 
 	private final ExecutorService entryConsumptionService;
 	private Timer timer;
 	private Client client;
 
-	public AtomFeedConsumer() {
+	public AtomFeedConsumer(AtomFeedBookmark atomFeedBookmark) {
+		this.atomFeedBookmark = atomFeedBookmark;
 		entryConsumptionService = newFixedThreadPool(getNoOfConcurrentConsumers(), getBufferSize());
 		client = ClientBuilder.newClient();
 		timer = new Timer(true);
