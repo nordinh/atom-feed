@@ -1,5 +1,6 @@
 atom-feed
 =========
+[![Build Status](https://travis-ci.org/nordinh/atom-feed.svg?branch=master)](https://travis-ci.org/nordinh/atom-feed)
 
 Core
 ----
