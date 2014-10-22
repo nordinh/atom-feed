@@ -92,7 +92,7 @@
 				<version>${metrics.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.github.xavierbourguignon.metrics</groupId>
+				<groupId>com.github.nordinh.metrics</groupId>
 				<artifactId>metrics-resteasy</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 			</dependency>

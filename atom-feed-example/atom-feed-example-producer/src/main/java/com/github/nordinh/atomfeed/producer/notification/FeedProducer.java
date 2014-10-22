@@ -8,7 +8,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import com.github.nordinh.atomfeed.metrics.AtomFeedProducerMetricsProperties;
-import com.github.xavierbourguignon.metrics.resteasy.MetricsFeature;
+import com.github.nordinh.metrics.resteasy.MetricsFeature;
 
 @ApplicationPath("/")
 public class FeedProducer extends Application {
