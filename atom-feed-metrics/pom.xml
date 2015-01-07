@@ -25,5 +25,9 @@
 			<groupId>com.github.nordinh.metrics</groupId>
 			<artifactId>metrics-resteasy</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-annotation</artifactId>
+		</dependency>
 	</dependencies>
 </project>

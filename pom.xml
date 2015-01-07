@@ -53,17 +53,17 @@
 			</dependency>
 			<dependency>
 				<groupId>com.github.nordinh</groupId>
-				<artifactId>atom-feed-common</artifactId>
+				<artifactId>atom-feed-example-common</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.github.nordinh</groupId>
-				<artifactId>atom-feed-consumer</artifactId>
+				<artifactId>atom-feed-example-consumer</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.github.nordinh</groupId>
-				<artifactId>atom-feed-producer</artifactId>
+				<artifactId>atom-feed-example-producer</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -89,6 +89,11 @@
 			<dependency>
 				<groupId>io.dropwizard.metrics</groupId>
 				<artifactId>metrics-servlet</artifactId>
+				<version>${metrics.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.dropwizard.metrics</groupId>
+				<artifactId>metrics-annotation</artifactId>
 				<version>${metrics.version}</version>
 			</dependency>
 			<dependency>
@@ -127,4 +132,14 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	
+	<repositories>
+		<repository>
+		    <id>git-nordinh</id>
+		    <name>nordinh's Git based repo</name>
+		    <url>https://github.com/nordinh/maven-repo/raw/master/</url>
+		    <releases><updatePolicy>never</updatePolicy></releases>
+		    <snapshots><updatePolicy>always</updatePolicy></snapshots>
+		</repository>
+	</repositories>
 </project>

@@ -12,7 +12,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.github.nordinh</groupId>
-			<artifactId>atom-feed-common</artifactId>
+			<artifactId>atom-feed-example-common</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.github.nordinh</groupId>
