@@ -59,7 +59,7 @@ Example
 
 Start example feed producer with command
 
-`mvn jetty:run -f atom-feed-example\atom-feed-example-producer\pom.xml`
+`mvn jetty:run -f atom-feed-example/atom-feed-example-producer/pom.xml`
 
 Browse `GET http://localhost:8082/notifications` to navigate to the head of the feed.
 
@@ -69,7 +69,7 @@ See `com.github.nordinh.atomfeed.producer.notification.FeedProducer` for details
 
 Start example feed consumer with command
 
-`mvn jetty:run -f atom-feed-example\atom-feed-example-consumer\pom.xml`
+`mvn jetty:run -f atom-feed-example/atom-feed-example-consumer/pom.xml`
 
 Example by default set up with 5 concurrent consumers.
 
