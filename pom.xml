@@ -14,7 +14,7 @@
 	</modules>
 
 	<properties>
-		<resteasy.version>3.0.8.Final</resteasy.version>
+		<resteasy.version>3.0.11.Final</resteasy.version>
 		<metrics.version>3.1.0</metrics.version>
 	</properties>
 
